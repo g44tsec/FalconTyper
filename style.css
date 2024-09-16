@@ -1,0 +1,240 @@
+/* Import Google Font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column; /* Changed to column to position header and content properly */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #486a8b; /* Light grey background */
+  padding: 0 10px;
+}
+
+::selection {
+  color: #fff;
+  background: #007bff; /* Modern blue highlight */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 48px; /* Large font size for the title */
+  color: #76a0ef; /* White text color */
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  width: 770px;
+  padding: 35px;
+  padding-bottom: 15px;
+  background: #ffffff; /* White background for the wrapper */
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  background: #aed5fc; /* Very light grey for a modern feel */
+}
+
+.input-field {
+  opacity: 0;
+  z-index: -999;
+  position: absolute;
+}
+
+.content-box {
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid #dee2e6; /* Light grey border */
+}
+
+.typing-text {
+  max-height: 256px;
+  overflow: hidden;
+}
+
+.typing-text::-webkit-scrollbar {
+  width: 0;
+}
+
+.typing-text p {
+  font-size: 21px;
+  text-align: justify;
+  letter-spacing: 1px;
+  word-break: break-word;
+}
+
+.typing-text p span {
+  position: relative;
+}
+
+.typing-text p span.correct {
+  color: #0f13fd; /* Green for correct text */
+}
+
+.typing-text p span.incorrect {
+  color: #dc3545; /* Red for incorrect text */
+  background: #f8d7da; /* Light red background for incorrect text */
+  border-radius: 4px;
+}
+
+.typing-text p span.active {
+  color: #007bff; /* Modern blue for active text */
+}
+
+.typing-text p span.active::before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #007bff; /* Modern blue underline */
+  border-radius: 5px;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 1;
+  }
+}
+
+.content {
+  margin-top: 17px;
+  display: flex;
+  padding: 12px 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #dee2e6; /* Light grey border */
+}
+
+button {
+  outline: none;
+  border: none;
+  width: 105px;
+  color: #ffffff; /* White text */
+  padding: 8px 0;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #007bff; /* Modern blue background */
+  transition: transform 0.3s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.result-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: calc(100% - 140px);
+  justify-content: space-between;
+}
+
+.result-details li {
+  display: flex;
+  height: 20px;
+  list-style: none;
+  position: relative;
+  align-items: center;
+}
+
+.result-details li:not(:first-child) {
+  padding-left: 22px;
+  border-left: 1px solid #dee2e6; /* Light grey border */
+}
+
+.result-details li p {
+  font-size: 19px;
+}
+
+.result-details li span {
+  display: block;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+li span b {
+  font-weight: 500;
+}
+
+li:not(:first-child) span {
+  font-weight: 500;
+}
+
+.footer {
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-bottom: 0;
+  color: #007bff; /* Modern blue for footer */
+}
+
+@media (max-width: 745px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  .content-box .content {
+    padding: 20px 0;
+  }
+
+  .typing-text {
+    max-height: 100%;
+  }
+
+  .typing-text p {
+    font-size: 19px;
+    text-align: left;
+  }
+
+  button {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+    margin-top: 20px;
+  }
+
+  .result-details {
+    width: 100%;
+  }
+
+  .result-details li:not(:first-child) {
+    border-left: 0;
+    padding: 0;
+  }
+
+  .result-details li p,
+  .result-details li span {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 518px) {
+  .content-box {
+    padding: 10px 15px 0;
+  }
+
+  .typing-text p {
+    font-size: 18px;
+  }
+
+  .result-details li {
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}
