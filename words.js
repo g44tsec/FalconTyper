@@ -1,28 +1,70 @@
-const words = [
-    "apple", "banana", "carrot", "dog", "elephant", "fish", "grape", "hat", "ice", "juice", "kangaroo", "lemon",
-    "mouse", "night", "orange", "pen", "queen", "rabbit", "sun", "table", "umbrella", "vase", "wolf", "xylophone",
-    "yarn", "zebra", "airplane", "book", "cloud", "door", "egg", "frog", "gate", "house", "insect", "jacket",
-    "key", "lamp", "mountain", "net", "octopus", "pizza", "quilt", "rose", "shoe", "train", "violin", "whale",
-    "yacht", "zoo", "jump", "run", "climb", "swim", "fly", "dance", "read", "write", "build", "paint", "cook",
-    "play", "sing", "drive", "explore", "hike", "study", "travel", "rest", "watch", "throw", "catch", "draw",
-    "kick", "shake", "lift", "drop", "walk", "code", "design", "laugh", "cry", "whisper", "shout", "organize",
-    "plan", "fix", "create", "repair", "swing", "roll", "sculpt", "blend", "mix", "trek", "sprint", "meditate",
-    "sketch", "juggle", "stitch", "frame", "sew", "fold", "arrange", "ambidextrous", "blossom", "catastrophic",
-    "delightful", "enthusiastic", "fascinating", "gregarious", "haphazard", "incredible", "joyous", "knowledgeable",
-    "luminous", "meticulous", "nostalgic", "overwhelming", "peculiar", "quaint", "radiant", "sophisticated", "thriving",
-    "unique", "vivid", "whimsical", "xenophobic", "yearning", "zealous"
+const nouns = [
+    "dog", "cat", "house", "car", "tree", "book", "bird", "computer", "phone", "shoe", "train", "apple", "banana",
+    "ball", "hat", "bed", "bicycle", "boat", "chair", "cow", "cup", "door", "duck", "flower", "game", "lamp",
+    "pencil", "plane", "star", "table", "truck", "window", "toy", "fish", "cookie", "shirt", "horse", "key", 
+    "kite", "leaf", "milk", "moon", "rain", "sandwich", "school", "shirt", "sock", "sun", "towel", "water",
+    "garden", "pillow", "blanket", "camera", "watch", "bike", "ocean", "cloud", "river", "forest", "bench",
+    "street", "city", "park", "bridge", "glove", "bag", "wallet", "clock", "mirror", "bottle", "shelf", "piano",
+    "violin", "guitar", "bus", "rocket", "fence", "path", "stadium", "basket", "candle", "notebook", "eraser",
+    "calculator", "shark", "whale", "penguin", "rabbit", "balloon", "skateboard", "bat", "shovel", "helmet", "subway", 
+    "grass", "cloud", "mountain", "valley", "desert", "sand"
 ];
 
-function getRandomSentence(wordCount) {
-    const shuffledWords = [...words].sort(() => 0.5 - Math.random());
-    const sentence = shuffledWords.slice(0, wordCount).join(' ');
-    return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
+const verbs = [
+    "run", "jump", "play", "sing", "dance", "cook", "read", "write", "drive", "fly", "walk", "swim", "build",
+    "eat", "drink", "sleep", "talk", "listen", "watch", "paint", "draw", "climb", "catch", "throw", "kick",
+    "laugh", "cry", "shout", "whisper", "fix", "clean", "open", "close", "help", "buy", "sell", "teach", "learn",
+    "search", "find", "break", "hug", "lift", "drop", "push", "pull", "carry", "fold", "mix", "bake", "ride",
+    "jog", "skip", "slide", "yell", "float", "twist", "turn", "spin", "mend", "hop", "sketch", "juggle", "chop",
+    "whirl", "knit", "bend", "shine", "measure", "swing", "shiver", "nibble", "brush", "explore", "pile", "clap",
+    "stir", "polish", "plant", "dig", "invent", "push", "fold", "record", "dive", "skip", "surf", "skip", "bounce", 
+    "kick", "toss", "decorate", "gather", "frame", "hang", "shape", "slide"
+];
+
+const adjectives = [
+    "happy", "sad", "fast", "slow", "funny", "quiet", "loud", "bright", "dark", "warm", "cold", "big", "small",
+    "tall", "short", "kind", "mean", "soft", "hard", "young", "old", "new", "clean", "dirty", "strong", "weak",
+    "brave", "calm", "excited", "tired", "fresh", "friendly", "shiny", "dull", "heavy", "light", "hungry", "thirsty",
+    "angry", "busy", "silly", "smart", "quick", "lazy", "proud", "gentle", "rich", "poor", "noisy", "beautiful", 
+    "ugly", "graceful", "clumsy", "cheerful", "mysterious", "curious", "wild", "polite", "rude", "adorable", "brilliant",
+    "fearless", "fierce", "glamorous", "grumpy", "jolly", "lazy", "mighty", "odd", "perfect", "risky", "sleepy", "tidy", 
+    "victorious", "zesty", "weird", "playful", "sincere", "thoughtful", "eager", "cheerful", "zany", "melodic", "peaceful",
+    "bold", "breezy", "glowing", "serious", "melancholy", "adventurous", "creative", "generous", "enthusiastic"
+];
+
+// Function to shuffle an array to ensure randomness without repetition
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
 }
 
-function getRandomParagraph(sentenceCount, wordsPerSentence) {
-    return Array.from({ length: sentenceCount }, () => getRandomSentence(wordsPerSentence)).join(' ');
+// Function to construct a proper sentence without repeating words
+function getRandomSentence(availableNouns, availableVerbs, availableAdjectives) {
+    const noun = availableNouns.pop();  // Get and remove a random noun
+    const verb = availableVerbs.pop();  // Get and remove a random verb
+    const adjective1 = availableAdjectives.pop();  // Get and remove the first adjective
+    const adjective2 = availableAdjectives.pop();  // Get and remove the second adjective
+
+    // Constructing a sentence (e.g., "The happy dog runs with the small ball.")
+    return `The ${adjective1} ${noun} ${verb}s the ${adjective2} ${availableNouns.pop()}.`;
+}
+
+// Function to generate a paragraph with a given number of sentences, ensuring no repetition
+function getRandomParagraph(sentenceCount) {
+    // Shuffle arrays to ensure randomness
+    const shuffledNouns = shuffleArray([...nouns]);
+    const shuffledVerbs = shuffleArray([...verbs]);
+    const shuffledAdjectives = shuffleArray([...adjectives]);
+
+    // Ensure there are enough unique words for the number of sentences
+    const minWords = sentenceCount * 2; // 2 adjectives per sentence
+    if (shuffledNouns.length < sentenceCount || shuffledVerbs.length < sentenceCount || shuffledAdjectives.length < minWords) {
+        throw new Error("Not enough words to generate unique sentences.");
+    }
+
+    // Generate sentences without repeating words
+    return Array.from({ length: sentenceCount }, () => getRandomSentence(shuffledNouns, shuffledVerbs, shuffledAdjectives)).join(' ');
 }
 
 // Example usage:
-const fillerParagraph = getRandomParagraph(5, 15); // Generates a paragraph with 5 sentences of 15 words each
+const fillerParagraph = getRandomParagraph(5); // Generates a paragraph with 5 proper, non-repeating sentences
 console.log(fillerParagraph);
