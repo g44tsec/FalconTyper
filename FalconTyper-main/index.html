@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Falcon Type</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <video autoplay muted loop id="background-video"></video>
+
+    <div class="header">
+        <h1>FalconType</h1>
+    </div>
+
+    <div class="capslock-warning" id="capsLockWarning" style="display: none;">Caps Lock is ON</div>
+    <div class="wrapper">
+        <input type="text" class="input-field" placeholder="Start typing here...">
+        <div class="content-box">
+            <div class="typing-text">
+                <p></p>
+            </div>
+            <div class="content">
+                <ul class="result-details">
+                    <li class="time">
+                        <p>Time Left:</p>
+                        <span><b>60</b>s</span>
+                    </li>
+                    <li class="mistake">
+                        <p>Mistakes:</p>
+                        <span>0</span>
+                    </li>
+                    <li class="wpm">
+                        <p>WPM:</p>
+                        <span>0</span>
+                    </li>
+                </ul>
+                <button id="tryAgainBtn">Try Again</button>
+                <button id="resetGameBtn">Reset Game</button>
+            </div>
+        </div>
+
+        <div id="winScreen" style="display:none;">
+            <h2>Congratulations!</h2>
+            <p>Your WPM: <span id="finalWPM">0</span></p>
+            <p>Mistakes: <span id="finalMistakes">0</span></p>
+        </div>
+
+        <div class="footer">
+            <span></span>
+        </div>
+    </div>
+
+    <script src="words.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
